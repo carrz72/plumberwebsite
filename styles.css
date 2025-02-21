@@ -74,7 +74,8 @@ nav a {
 }
 
 nav a:hover {
-  text-decoration: underline;
+  
+  color: #fc2020;
 }
 
 /* Main content styles */
@@ -107,8 +108,8 @@ main {
 }
 
 #home button {
-  background: var(--primary-color);
-  color: #000000c0;
+  background: #fc2020;
+  color: white;
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
@@ -118,7 +119,8 @@ main {
 }
 
 #home button:hover {
-  background: #6866665d;
+  color: #000000;
+  background: #fefefe;
 }
 
 #choose-us {
@@ -136,7 +138,7 @@ main {
 #choose-us h2 {
   font-size: 1.8rem;
   margin: 7px 0 20px 0;
-  color: var(--primary-color);
+  color: #fc2020;
 }
 #choose-us p {
   text-align: left;
@@ -185,19 +187,21 @@ main {
 
 #about h3 {
   font-size: 1.5rem;
-  margin-bottom: 10px;
-  color: var(--primary-color);
+  margin-bottom: 6px;
+  color: #fc2020;
 }
+
 #about p {
   text-align: left;
   color: var(--primary-color);
   font-size: 1.2rem;
-  margin: 50px 0 30px 0px;
+  margin: 30px 0 30px 0px;
 }
 
 #about button {
-  background: var(--primary-color);
-  color: #000000ea;
+  background:#fc2020 ;
+  color: #f9f9f9ea;
+  
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
@@ -207,7 +211,8 @@ main {
 }
 
 #about button:hover {
-  background: #6866665d;
+  color: #000000;
+  background: #ffffff;
 }
 
 .outside-tags {
@@ -215,6 +220,10 @@ main {
   justify-content: space-around;
   margin: 10px 0 0 0;
   text-align: end;
+}
+
+.outside-tags h1 {
+  color: #fc2020;
 }
 
 .outside-tags a {
@@ -241,7 +250,7 @@ main {
 
 #plumbingandgas {
   padding: 10px 100px 5px;
-  margin: 10px 0 0px 0;
+  margin: 0px 0 0px 0;
   display: flex;
   height: auto;
 }
@@ -287,6 +296,10 @@ main {
   margin-bottom: 7px;
   color: var(--primary-color);
 }
+.services h3 {
+  color: #fc2020;
+}
+
 
 .services p {
   margin: 8px 0px 0px 0px;
@@ -295,7 +308,7 @@ main {
 
 #portfolio {
   padding: 10px 100px;
-  margin: 10px 0 5px 0;
+  margin: 50px 0 5px 0;
   display: flex;
   justify-content: center;
   justify-items: flex-start;
@@ -304,13 +317,13 @@ main {
 
 .portfolio-imgs {
   margin: 0px 10px;
-  width: 260px;
-  height: 400px;
+  width: 40%;
+  height: 50%px;
 }
 
 .portfolio-imgs img {
-  width: 259px;
-  height: 398px;
+  width: 90%;
+  height: 100%;
 
   border-radius: 10px;
 }
@@ -321,12 +334,16 @@ footer {
   color: #fff;
   text-align: center;
   padding: 3px 0;
-  margin-top: 6px;
+  margin-top: 80px;
   display: flex;
   flex-direction: wrap;
   justify-content: space-evenly;
   align-items: start;
   flex-wrap: wrap;
+}
+
+footer h1 {
+  color: #fc2020;
 }
 
 footer p {
