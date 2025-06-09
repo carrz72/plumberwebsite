@@ -1,6 +1,9 @@
 // Main JavaScript file for Carr Denzy Plumbing & Gas website
 
 document.addEventListener('DOMContentLoaded', function() {
+    // Initialize EmailJS
+    emailjs.init('CZK2hQByhNl9oaNMQ');
+    
     // Smooth scrolling for navigation links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
@@ -9,10 +12,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 behavior: 'smooth'
             });
         });
-    });
-
-    // Form submission handling
-    const contactForm = document.querySelector('#contact form');
+    });    // Form submission handling with EmailJS
+    const contactForm = document.querySelector('#contact-form');
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
@@ -26,37 +27,61 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Simple form validation
             if (!name || !email || !message) {
-                alert('Please fill in all required fields.');
+                showFeedback('Please fill in all required fields.', 'error');
                 return;
             }
             
-            // Here you would normally send the data to a server
-            // For demo purposes, we'll just log it and show a success message
-            console.log('Form submitted:', { name, email, phone, service, message });
+            // Show loading state
+            const submitButton = contactForm.querySelector('button[type="submit"]');
+            const originalText = submitButton.textContent;
+            submitButton.textContent = 'Sending...';
+            submitButton.disabled = true;
+            showFeedback('Sending your message...', 'loading');
             
-            // Show success message
-            alert('Thank you for your message! We will get back to you soon.');
+            // Prepare email parameters
+            const templateParams = {
+                from_name: name,
+                from_email: email,
+                phone: phone,
+                service: service,
+                message: message,
+                to_name: 'Carr Denzy Plumbing & Gas'
+            };
             
-            // Reset the form
-            contactForm.reset();
-        });
-    }
-
-    // Add a sticky header on scroll
-    const header = document.querySelector('header');
-    const scrollThreshold = 100;
-
-    if (header) {
-        window.addEventListener('scroll', function() {
-            if (window.scrollY > scrollThreshold) {
-                header.classList.add('sticky');
-            } else {
-                header.classList.remove('sticky');
-            }
+            // Send email using EmailJS
+            emailjs.send('service_6k5jfur', 'template_abcdefg', templateParams)
+                .then(function(response) {
+                    console.log('SUCCESS!', response.status, response.text);
+                    showFeedback('Thank you for your message! We will get back to you soon.', 'success');
+                    contactForm.reset();
+                }, function(error) {
+                    console.log('FAILED...', error);
+                    showFeedback('Sorry, there was an error sending your message. Please try again or contact us directly.', 'error');
+                })
+                .finally(function() {
+                    // Reset button state
+                    submitButton.textContent = originalText;
+                    submitButton.disabled = false;
+                });
         });
     }
     
-    // "Get a Quote" button functionality
+    // Function to show feedback messages
+    function showFeedback(message, type) {
+        const feedback = document.getElementById('form-feedback');
+        if (feedback) {
+            feedback.textContent = message;
+            feedback.className = `form-feedback ${type}`;
+            feedback.style.display = 'block';
+            
+            // Hide feedback after 5 seconds for success/error messages
+            if (type === 'success' || type === 'error') {
+                setTimeout(() => {
+                    feedback.style.display = 'none';
+                }, 5000);
+            }
+        }
+    }// "Get a Quote" button functionality
     const quoteButton = document.querySelector('#home button');
     if (quoteButton) {
         quoteButton.addEventListener('click', function() {
@@ -104,8 +129,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
     });
-    
-    // Smooth scrolling for anchor links
+      // Smooth scrolling for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
@@ -122,27 +146,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-      // Form submission handling
-    const mainContactForm = document.querySelector('#contact form');
-    if (mainContactForm) {
-        mainContactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Simple validation
-            const name = this.querySelector('#name').value;
-            const email = this.querySelector('#email').value;
-            const message = this.querySelector('#message').value;
-            
-            if (!name || !email || !message) {
-                alert('Please fill in all required fields.');
-                return;
-            }
-            
-            // Simulate form submission
-            alert('Thank you for your message! We will get back to you soon.');
-            this.reset();
-        });
-    }
     
     // Add scroll effect to header
     window.addEventListener('scroll', function() {
