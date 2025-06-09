@@ -22,12 +22,10 @@
 
                 <div class="logo">
 
-                    <h1> Carr Denzy Plumbing & Gas </h1>
-
-                    <span class="material-symbols-outlined">
+                    <h1> Carr Denzy Plumbing & Gas <span class="material-symbols-outlined">
                         handyman
-                    </span>
-
+                    </span> </h1>
+                    
                 </div>
 
                 <div class="mobile-menu-toggle">
@@ -215,7 +213,7 @@
         <h2>Our Work</h2>
         <div class="portfolio-container">
             <div class="portfolio-imgs">
-                <img src="/images/background1.jpg" alt="Plumbing installation project">
+                <img src="/images/porfolio image 2.jpg" alt="Brick shed with balcony  project">
             </div>
             <div class="portfolio-imgs">
                 <img src="/images/background7.jpg" alt="Heating system repair">
@@ -269,37 +267,50 @@
                         <p>carrdenzy@gmail.com</p>
                     </div>
                 </div>
-            </div>
-            <div class="contact-form">
-                <form action="#" method="post">
+            </div>            <div class="contact-form">
+                <form action="https://formspree.io/f/xvgrkwyz" method="post">
                     <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" id="name" name="name" required>
+                        <label for="name">Name </label>
+                        <input type="text" id="name" name="name" required placeholder="Your full name">
                     </div>
                     <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" required>
+                        <label for="email">Email </label>
+                        <input type="email" id="email" name="email" required placeholder="your.email@example.com">
                     </div>
                     <div class="form-group">
                         <label for="phone">Phone</label>
-                        <input type="tel" id="phone" name="phone">
+                        <input type="tel" id="phone" name="phone" placeholder="+44 123 456 7890">
                     </div>
                     <div class="form-group">
                         <label for="service">Service Needed</label>
                         <select id="service" name="service">
-                            <option value="plumbing">Plumbing</option>
-                            <option value="gas">Gas</option>
-                            <option value="heating">Heating</option>
-                            <option value="electricals">Electricals</option>
-                            <option value="building">Building Services</option>
+                            <option value="">Select a service...</option>
+                            <option value="plumbing">Plumbing Services</option>
+                            <option value="gas">Gas Installation & Repair</option>
+                            <option value="heating">Heating Systems</option>
+                            <option value="electrical">Electrical Services</option>
+                            <option value="building-maintenance">Building Maintenance</option>
+                            <option value="building-extension">Building Extensions</option>
+                            <option value="construction">Construction</option>
+                            <option value="project-management">Project Management</option>
+                            <option value="emergency">Emergency Call-out</option>
                             <option value="other">Other</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="message">Message</label>
-                        <textarea id="message" name="message" rows="4" required></textarea>
+                        <label for="message">Message </label>
+                        <textarea id="message" name="message" rows="5" required placeholder="Please describe your requirements or the issue you're experiencing..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="urgency">Urgency Level</label>
+                        <select id="urgency" name="urgency">
+                            <option value="normal">Normal - Within a few days</option>
+                            <option value="urgent">Urgent - Within 24 hours</option>
+                            <option value="emergency">Emergency - ASAP</option>
+                        </select>
                     </div>
                     <button type="submit">Send Message</button>
+                    <p class="form-note">* Required fields. We'll respond within 24 hours.</p>
                 </form>
             </div>
         </div>
@@ -390,7 +401,18 @@
         <div class="footer-bottom">
             <p>&copy; 2024 Carr Denzy Plumbing & Gas. All rights reserved. | Licensed & Insured | Gas Safe Registered</p>
         </div>
-    </footer>
+    </footer>    <!-- Image Modal/Lightbox -->
+    <div id="imageModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <img class="modal-image" id="modalImg" alt="">
+            <div class="modal-caption" id="caption"></div>
+            
+            <!-- Navigation arrows -->
+            <div class="modal-nav modal-prev">&#10094;</div>
+            <div class="modal-nav modal-next">&#10095;</div>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>

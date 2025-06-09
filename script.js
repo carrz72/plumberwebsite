@@ -192,4 +192,114 @@ document.addEventListener('DOMContentLoaded', function() {
             img.style.transition = 'opacity 0.3s ease';
         }
     });
+      // Portfolio Image Modal/Lightbox functionality
+    const modal = document.getElementById('imageModal');
+    const modalImg = document.getElementById('modalImg');
+    const caption = document.getElementById('caption');
+    const closeBtn = document.querySelector('.modal-close');
+    const prevBtn = document.querySelector('.modal-prev');
+    const nextBtn = document.querySelector('.modal-next');
+    const portfolioImages = document.querySelectorAll('.portfolio-imgs img');
+    
+    let currentImageIndex = 0;
+    let imageArray = [];
+    
+    // Build image array for navigation
+    portfolioImages.forEach((img, index) => {
+        imageArray.push({
+            src: img.src,
+            alt: img.alt
+        });
+        
+        // Add click event to each portfolio image
+        img.parentElement.addEventListener('click', function(e) {
+            e.preventDefault();
+            currentImageIndex = index;
+            openModal(img.src, img.alt);
+        });
+        
+        // Add cursor pointer style
+        img.parentElement.style.cursor = 'pointer';
+    });
+    
+    // Open modal function
+    function openModal(src, alt) {
+        if (modal) {
+            modal.style.display = 'flex';
+            modalImg.src = src;
+            caption.textContent = alt;
+            document.body.style.overflow = 'hidden';
+            
+            // Add fade-in animation
+            modal.style.opacity = '0';
+            setTimeout(() => {
+                modal.style.opacity = '1';
+            }, 10);
+        }
+    }
+    
+    // Close modal function
+    function closeModal() {
+        if (modal) {
+            modal.style.opacity = '0';
+            setTimeout(() => {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }, 300);
+        }
+    }
+    
+    // Event listeners for modal controls
+    if (closeBtn) {
+        closeBtn.addEventListener('click', closeModal);
+    }
+    
+    if (prevBtn) {
+        prevBtn.addEventListener('click', () => changeImage(-1));
+    }
+    
+    if (nextBtn) {
+        nextBtn.addEventListener('click', () => changeImage(1));
+    }
+    
+    // Close modal when clicking outside the image
+    if (modal) {
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+    }
+    
+    // Keyboard navigation
+    document.addEventListener('keydown', function(e) {
+        if (modal && modal.style.display === 'flex') {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+            if (e.key === 'ArrowLeft') {
+                changeImage(-1);
+            }
+            if (e.key === 'ArrowRight') {
+                changeImage(1);
+            }
+        }
+    });
+    
+    // Change image function (for navigation arrows)
+    function changeImage(direction) {
+        currentImageIndex += direction;
+        
+        if (currentImageIndex >= imageArray.length) {
+            currentImageIndex = 0;
+        }
+        if (currentImageIndex < 0) {
+            currentImageIndex = imageArray.length - 1;
+        }
+        
+        if (modalImg && caption) {
+            modalImg.src = imageArray[currentImageIndex].src;
+            caption.textContent = imageArray[currentImageIndex].alt;
+        }
+    }
 });
