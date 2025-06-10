@@ -323,7 +323,7 @@ section {
 /* Services Section - Optimized grid */
 #services {
   padding: var(--section-padding);
-  background: var(--white);
+  background: var(--secondary-color);
 }
 
 #services h2 {
@@ -910,7 +910,7 @@ img {
   /* Hero section adjustments */
   #home {
     padding: 1.5rem;
-    min-height: 80vh;
+    margin-top: 60px; /* Adjust for fixed header */
   }
 
   /* Layout adjustments */
