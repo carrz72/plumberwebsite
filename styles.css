@@ -996,6 +996,7 @@ img {
 
   #home {
     padding: 1rem;
+    margin-top: 85px; /* Adjust for fixed header */
   }
 
   /* Portfolio single column */
