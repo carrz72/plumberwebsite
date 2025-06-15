@@ -41,6 +41,128 @@ body {
   text-rendering: optimizeSpeed;
 }
 
+/* Fixed font loading to prevent layout shifts */
+@font-face {
+  font-family: "Material Symbols Outlined";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap; /* Prevent FOIT */
+  src: url(https://fonts.gstatic.com/s/materialsymbolsoutlined/v251/kJF1BvYX7BgnkSrUwT8OhrdQw4oELdPIeeII9v6oDMzByHX9rA6RzaxHMPdY.woff2)
+    format("woff2");
+}
+
+/* Prevent layout shifts with explicit sizing */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  /* Prevent layout shifts */
+  aspect-ratio: attr(width) / attr(height);
+}
+
+/* Fixed header height to prevent layout shifts */
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 70px; /* Fixed height */
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+  box-shadow: var(--shadow);
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* Fixed mobile menu toggle positioning */
+.mobile-menu-toggle {
+  display: none;
+  position: fixed;
+  right: 20px;
+  top: 20px;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  font-size: 24px;
+  z-index: 1001;
+  color: var(--text-color);
+  /* Prevent layout shift */
+  transform: translateZ(0);
+}
+
+/* Hero section with proper sizing */
+#home {
+  background: linear-gradient(
+      135deg,
+      rgba(252, 32, 32, 0.9),
+      rgba(51, 51, 51, 0.8)
+    ),
+    url("/images/portf 1.WEBP") center/cover;
+  min-height: 100vh;
+  height: 100vh; /* Fixed height */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: var(--white);
+  padding: 2rem;
+  padding-top: calc(70px + 2rem); /* Account for fixed header */
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* Hero Section - Optimized for LCP */
+#home {
+  background: linear-gradient(
+      135deg,
+      rgba(252, 32, 32, 0.9),
+      rgba(51, 51, 51, 0.8)
+    ),
+    url("/images/portf 1.webp") center/cover;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: var(--white);
+  padding: 2rem;
+  /* GPU acceleration for better LCP */
+  will-change: transform;
+  transform: translateZ(0);
+  /* Optimize background image loading */
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  /* Force layer creation for better performance */
+  contain: layout style paint;
+}
+
+/* LCP optimizations for mobile */
+@media (max-width: 768px) {
+  #home {
+    /* Use scroll instead of fixed for better mobile performance */
+    background-attachment: scroll;
+    /* Ensure proper sizing on mobile */
+    min-height: 100vh;
+    min-height: 100dvh; /* Dynamic viewport height for mobile */
+  }
+}
+
+/* Preload critical background images */
+.preload-hero-bg::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  width: 1px;
+  height: 1px;
+  background: url("/images/portf 1.webp") no-repeat -9999px -9999px;
+  background-size: 1px 1px;
+}
+
 /* Typography - Optimized */
 h1,
 h2,
@@ -51,6 +173,8 @@ h6 {
   font-weight: 600;
   line-height: 1.2;
   margin-bottom: 1rem;
+  /* Prevent font loading layout shifts */
+  font-display: swap;
 }
 
 h1 {
@@ -63,9 +187,34 @@ h3 {
   font-size: clamp(1.2rem, 3vw, 1.5rem);
 }
 
-p {
-  margin-bottom: 1rem;
-  line-height: 1.7;
+/* Fix for deprecated API warning - explicit h1 font-size in sectioning elements */
+section h1,
+article h1,
+aside h1,
+nav h1 {
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+}
+
+/* Specific h1 font-sizes for different contexts */
+.outside-tags h1 {
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+}
+
+.footer-content h1 {
+  font-size: 1.3rem;
+}
+
+.logo h1 {
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
+}
+
+/* Logo styling - change from h1 to div */
+.logo-text {
+  color: var(--primary-color);
+  margin: 0;
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
+  font-weight: 600;
+  line-height: 1.2;
 }
 
 /* Header and Navigation - GPU accelerated */
@@ -73,6 +222,7 @@ header {
   position: fixed;
   top: 0;
   width: 100%;
+  height: 70px; /* Fixed height */
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
   z-index: 1000;
@@ -147,8 +297,14 @@ nav {
 
 .mobile-menu-toggle {
   display: none;
+  position: fixed;
+  right: 20px;
+  top: 20px;
+  width: 30px;
+  height: 30px;
   cursor: pointer;
-  font-size: 1.5rem;
+  font-size: 24px;
+  z-index: 1001;
   color: var(--text-color);
 }
 
@@ -159,8 +315,9 @@ nav {
       rgba(252, 32, 32, 0.9),
       rgba(51, 51, 51, 0.8)
     ),
-    url("/images/background1.jpg") center/cover;
+    url("/images/portf 1.WEBP") center/cover;
   min-height: 100vh;
+  height: 100vh; /* Fixed height */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -168,9 +325,18 @@ nav {
   text-align: center;
   color: var(--white);
   padding: 2rem;
+  padding-top: calc(70px + 2rem); /* Account for fixed header */
   /* GPU acceleration */
   will-change: transform;
   transform: translateZ(0);
+}
+
+#home h1 {
+  margin-bottom: 1.5rem;
+  max-width: 800px;
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  font-weight: 600;
+  line-height: 1.2;
 }
 
 #home h2 {
@@ -185,9 +351,9 @@ nav {
   opacity: 0.9;
 }
 
-/* Optimized button styles */
+/* Optimized button styles - Fixed contrast */
 button {
-  background: var(--primary-color);
+  background: #d01010; /* Darker red for better contrast */
   color: var(--white);
   border: none;
   padding: 12px 30px;
@@ -198,12 +364,9 @@ button {
   transition: var(--transition);
   box-shadow: var(--shadow);
   will-change: transform, box-shadow;
-}
-
-button:hover {
-  background: #e01010;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  /* Fixed dimensions to prevent layout shifts */
+  min-width: 120px;
+  min-height: 48px;
 }
 
 /* Optimized image handling */
@@ -244,14 +407,14 @@ section {
 }
 
 #choose-us h2 {
-  color: var(--white);
+  color: var(--secondary-color);
   margin-bottom: 1.5rem;
 }
 
 #choose-us p {
   margin-bottom: 2rem;
   line-height: 1.6;
-  color: var(--white);
+  color: var(--secondary-color);
 }
 
 /* About Section */
@@ -291,6 +454,12 @@ section {
   margin-bottom: 2rem;
 }
 
+.outside-tags h2 {
+  color: var(--secondary-color);
+  margin-bottom: 2rem;
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+}
+
 .outside-tags ul {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -320,7 +489,7 @@ section {
   color: #28a745;
 }
 
-/* Services Section - Optimized grid */
+/* Services Section - Fixed contrast */
 #services {
   padding: var(--section-padding);
   background: var(--secondary-color);
@@ -329,7 +498,7 @@ section {
 #services h2 {
   text-align: center;
   margin-bottom: 3rem;
-  color: var(--secondary-color);
+  color: #ffffff; /* Pure white for better contrast on dark background */
 }
 
 .services {
@@ -365,6 +534,8 @@ section {
   object-fit: contain;
   flex-shrink: 0;
   margin-bottom: 1rem;
+  /* Prevent layout shifts */
+  aspect-ratio: 1;
 }
 
 .service-content h3 {
@@ -406,21 +577,17 @@ section {
   cursor: pointer;
   position: relative;
   will-change: transform;
-}
-
-.portfolio-imgs:hover {
-  transform: scale(1.05);
+  /* Fixed aspect ratio */
+  aspect-ratio: 1;
 }
 
 .portfolio-imgs img {
   width: 100%;
-  height: 250px;
+  height: 100%;
   object-fit: cover;
   transition: transform 0.3s ease;
-}
-
-.portfolio-imgs:hover img {
-  transform: scale(1.05);
+  /* Explicit sizing */
+  aspect-ratio: 1;
 }
 
 /* Enhanced Portfolio hover effect */
@@ -448,15 +615,16 @@ section {
   opacity: 1;
 }
 
-/* Contact Section */
+/* Contact Section - Fixed contrast */
 #contact {
   padding: var(--section-padding);
+  background: var(--secondary-color);
 }
 
 #contact h2 {
   text-align: center;
   margin-bottom: 3rem;
-  color: var(--white);
+  color: #ffffff; /* Pure white for better contrast on dark background */
 }
 
 .contact-container {
@@ -468,12 +636,12 @@ section {
 }
 
 .contact-info h3 {
-  color: var(--white);
+  color: #ffffff; /* Pure white for better contrast */
   margin-bottom: 1rem;
 }
 
 #discription {
-  color: var(--white);
+  color: #f0f0f0; /* Very light gray for better contrast */
   margin-bottom: 2rem;
 }
 
@@ -496,7 +664,7 @@ section {
   font-size: 1.5rem;
 }
 .form-note {
-  color: var(--white);
+  color: #f0f0f0; /* Very light gray for better contrast */
   font-size: 0.9rem;
   margin-top: 1rem;
   text-align: center;
@@ -510,7 +678,7 @@ section {
   display: block;
   margin-bottom: 0.5rem;
   font-weight: 500;
-  color: var(--white);
+  color: #ffffff; /* Pure white for better contrast */
 }
 
 .form-group input,
@@ -533,10 +701,10 @@ section {
   box-shadow: 0 0 0 3px rgba(252, 32, 32, 0.1);
 }
 
-/* Form styling improvements */
+/* Form styling improvements - Fixed contrast */
 .form-group input[type="submit"],
 #button {
-  background: var(--primary-color);
+  background: #d01010; /* Darker red for better contrast */
   color: var(--white);
   border: none;
   padding: 12px 30px;
@@ -547,20 +715,19 @@ section {
   transition: var(--transition);
   box-shadow: var(--shadow);
   will-change: transform, box-shadow;
-  width: 100%;
-  margin-bottom: 1rem;
 }
 
 #button:hover,
 .form-group input[type="submit"]:hover {
-  background: #e01010;
+  background: #b00e0e; /* Even darker red for hover state */
   transform: translateY(-2px);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 #button:disabled,
 .form-group input[type="submit"]:disabled {
-  background: #ccc;
+  background: #888; /* Darker gray for better contrast */
+  color: var(--white);
   cursor: not-allowed;
   transform: none;
 }
@@ -587,11 +754,11 @@ section {
   content: "";
 }
 
-.form-group label[for="name"]::after,
-.form-group label[for="email"]::after,
+.form-group label[for="from_name"]::after,
+.form-group label[for="from_email"]::after,
 .form-group label[for="message"]::after {
   content: " *";
-  color: var(--primary-color);
+  color: #ff8888; /* Lighter red for better contrast on dark background */
   font-weight: bold;
 }
 
@@ -667,15 +834,17 @@ section {
   line-height: 1.6;
 }
 
-.testimonial h4 {
+.testimonial h3 {
   color: var(--secondary-color);
   font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 0;
 }
 
-/* Footer */
+/* Footer - Fixed contrast */
 footer {
   background: var(--secondary-color);
-  color: var(--white);
+  color: #f0f0f0; /* Very light gray for better contrast */
   padding: 3rem 2rem 2rem 2rem;
 }
 
@@ -688,7 +857,7 @@ footer {
 }
 
 .footer-content h1 {
-  color: var(--primary-color);
+  color: #ff6666; /* Brighter red for better contrast on dark background */
   font-size: 1.3rem;
   margin-bottom: 1rem;
   position: relative;
@@ -701,7 +870,24 @@ footer {
   bottom: -5px;
   width: 50px;
   height: 2px;
-  background: var(--primary-color);
+  background: #ff6666; /* Match the heading color */
+}
+
+.footer-content h2 {
+  color: #ff6666; /* Brighter red for better contrast on dark background */
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.footer-content h2::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 50px;
+  height: 2px;
+  background: #ff6666; /* Match the heading color */
 }
 
 .footer-content ul {
@@ -711,17 +897,18 @@ footer {
 .footer-content ul li {
   margin-bottom: 0.8rem;
   line-height: 1.6;
+  color: #f0f0f0; /* Very light gray for better contrast */
 }
 
 .footer-content ul li a {
-  color: #ccc;
+  color: #e0e0e0; /* Light gray for better contrast */
   text-decoration: none;
   transition: var(--transition);
   display: inline-block;
 }
 
 .footer-content ul li a:hover {
-  color: var(--primary-color);
+  color: #ff6666; /* Brighter red for hover state */
   transform: translateX(5px);
 }
 
@@ -730,8 +917,8 @@ footer {
   text-align: center;
   margin-top: 2rem;
   padding-top: 2rem;
-  border-top: 1px solid #555;
-  color: #ccc;
+  border-top: 1px solid #666; /* Lighter border for better visibility */
+  color: #e0e0e0; /* Light gray for better contrast */
   font-size: 0.9rem;
 }
 
@@ -750,6 +937,13 @@ footer {
   .footer-content h1::after {
     left: 50%;
     transform: translateX(-50%);
+    background: #ff6666; /* Maintain bright color for visibility */
+  }
+
+  .footer-content h2::after {
+    left: 50%;
+    transform: translateX(-50%);
+    background: #ff6666; /* Maintain bright color for visibility */
   }
 
   .footer-content ul li {
@@ -772,6 +966,11 @@ footer {
   }
 
   .footer-content h1 {
+    font-size: 1.1rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .footer-content h2 {
     font-size: 1.1rem;
     margin-bottom: 0.8rem;
   }

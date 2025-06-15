@@ -1,5 +1,18 @@
 // Main JavaScript file for Carr Denzy Plumbing & Gas website
 
+// Optimized for LCP performance
+
+// Immediate LCP optimization
+(function () {
+    // Critical hero section optimization
+    const hero = document.getElementById('home');
+    if (hero) {
+        // Ensure hero renders immediately
+        hero.style.visibility = 'visible';
+        hero.style.opacity = '1';
+    }
+})();
+
 document.addEventListener('DOMContentLoaded', function () {
     // Initialize EmailJS
     emailjs.init('CZK2hQByhNl9oaNMQ');
@@ -183,7 +196,7 @@ document.addEventListener('DOMContentLoaded', function () {
             img.style.transition = 'opacity 0.3s ease';
         }
     });
-    // Portfolio Image Modal/Lightbox functionality
+    // Portfolio Image Modal/Lightbox functionality - Fixed for mobile
     const modal = document.getElementById('imageModal');
     const modalImg = document.getElementById('modalImg');
     const caption = document.getElementById('caption');
@@ -249,7 +262,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Change image function (for navigation arrows) - Fixed
     function changeImage(direction) {
         if (imageArray.length === 0) return;
-        
+
         currentImageIndex += direction;
 
         // Handle wraparound
@@ -271,14 +284,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Event listeners for modal controls - Improved for mobile
     if (closeBtn) {
-        closeBtn.addEventListener('click', function(e) {
+        closeBtn.addEventListener('click', function (e) {
             e.preventDefault();
             e.stopPropagation();
             closeModal();
         });
-        
+
         // Add touch support
-        closeBtn.addEventListener('touchend', function(e) {
+        closeBtn.addEventListener('touchend', function (e) {
             e.preventDefault();
             e.stopPropagation();
             closeModal();
@@ -286,14 +299,14 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     if (prevBtn) {
-        prevBtn.addEventListener('click', function(e) {
+        prevBtn.addEventListener('click', function (e) {
             e.preventDefault();
             e.stopPropagation();
             changeImage(-1);
         });
-        
+
         // Add touch support
-        prevBtn.addEventListener('touchend', function(e) {
+        prevBtn.addEventListener('touchend', function (e) {
             e.preventDefault();
             e.stopPropagation();
             changeImage(-1);
@@ -301,14 +314,14 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     if (nextBtn) {
-        nextBtn.addEventListener('click', function(e) {
+        nextBtn.addEventListener('click', function (e) {
             e.preventDefault();
             e.stopPropagation();
             changeImage(1);
         });
-        
+
         // Add touch support
-        nextBtn.addEventListener('touchend', function(e) {
+        nextBtn.addEventListener('touchend', function (e) {
             e.preventDefault();
             e.stopPropagation();
             changeImage(1);
@@ -344,11 +357,11 @@ document.addEventListener('DOMContentLoaded', function () {
     let touchEndX = 0;
 
     if (modal) {
-        modal.addEventListener('touchstart', function(e) {
+        modal.addEventListener('touchstart', function (e) {
             touchStartX = e.changedTouches[0].screenX;
         });
 
-        modal.addEventListener('touchend', function(e) {
+        modal.addEventListener('touchend', function (e) {
             touchEndX = e.changedTouches[0].screenX;
             handleSwipe();
         });
