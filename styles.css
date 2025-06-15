@@ -615,6 +615,10 @@ section {
   opacity: 1;
 }
 
+.modal-caption {
+  color: #f0f0f0; /* Light gray for better contrast */
+}
+
 /* Contact Section - Fixed contrast */
 #contact {
   padding: var(--section-padding);
@@ -1490,6 +1494,7 @@ img {
     font-size: 1rem;
     padding: 15px;
     margin-top: 15px;
+    color: #f0f0f0; /* Light gray for better contrast */
   }
 }
 
