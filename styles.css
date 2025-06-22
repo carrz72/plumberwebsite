@@ -578,8 +578,9 @@ section {
   cursor: pointer;
   position: relative;
   will-change: transform;
-  /* Fixed aspect ratio */
-  aspect-ratio: 1;
+  /* Remove fixed aspect ratio to adapt to content */
+  height: auto;
+
 }
 
 .portfolio-imgs img {
@@ -587,8 +588,7 @@ section {
   height: 100%;
   object-fit: cover;
   transition: transform 0.3s ease;
-  /* Explicit sizing */
-  aspect-ratio: 1;
+  /* Remove explicit aspect ratio constraint */
 }
 
 /* Enhanced Portfolio hover effect */
