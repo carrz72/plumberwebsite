@@ -450,12 +450,12 @@ section {
 }
 
 .outside-tags h1 {
-  color: var(--secondary-color);
+ color: var(--white);
   margin-bottom: 2rem;
 }
 
 .outside-tags h2 {
-  color: var(--secondary-color);
+  color: var(--text-color);
   margin-bottom: 2rem;
   font-size: clamp(1.8rem, 4vw, 2.5rem);
 }
@@ -472,12 +472,13 @@ section {
   align-items: center;
   justify-content: center;
   gap: 10px;
-  background: var(--white);
+  background: var(--secondary-color);
   padding: 1rem;
   border-radius: var(--border-radius);
   box-shadow: var(--shadow);
   transition: var(--transition);
   will-change: transform, box-shadow;
+  color: var(--white);
 }
 
 .outside-tags li:hover {
@@ -577,8 +578,9 @@ section {
   cursor: pointer;
   position: relative;
   will-change: transform;
-  /* Fixed aspect ratio */
-  aspect-ratio: 1;
+  /* Remove fixed aspect ratio to adapt to content */
+  height: auto;
+
 }
 
 .portfolio-imgs img {
@@ -586,8 +588,7 @@ section {
   height: 100%;
   object-fit: cover;
   transition: transform 0.3s ease;
-  /* Explicit sizing */
-  aspect-ratio: 1;
+  /* Remove explicit aspect ratio constraint */
 }
 
 /* Enhanced Portfolio hover effect */
@@ -802,7 +803,7 @@ section {
 
 #testimonials h2 {
   margin-bottom: 3rem;
-  color: var(--secondary-color);
+  color: var(--white);
 }
 
 .testimonials-container {
@@ -814,7 +815,7 @@ section {
 }
 
 .testimonial {
-  background: var(--white);
+  background: var(--secondary-color);
   padding: 2rem;
   border-radius: var(--border-radius);
   box-shadow: var(--shadow);
@@ -836,10 +837,11 @@ section {
   font-style: italic;
   margin-bottom: 1rem;
   line-height: 1.6;
+   color: var(--white);
 }
 
 .testimonial h3 {
-  color: var(--secondary-color);
+  color: var(--white);
   font-weight: 600;
   font-size: 1.1rem;
   margin-bottom: 0;
