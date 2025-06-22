@@ -803,7 +803,7 @@ section {
 
 #testimonials h2 {
   margin-bottom: 3rem;
-  color: var(--white);
+  color: var(--secondary-color);
 }
 
 .testimonials-container {
