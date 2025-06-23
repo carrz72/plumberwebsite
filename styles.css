@@ -8,6 +8,7 @@
 :root {
   --primary-color: #fc2020;
   --secondary-color: #333;
+  --background-color: #fd1e1ede;
   --text-color: #444;
   --light-bg: #f8f9fa;
   --white: #ffffff;
@@ -472,7 +473,7 @@ section {
   align-items: center;
   justify-content: center;
   gap: 10px;
-  background: var(--secondary-color);
+  background: var(--background-color);
   padding: 1rem;
   border-radius: var(--border-radius);
   box-shadow: var(--shadow);
@@ -493,7 +494,7 @@ section {
 /* Services Section - Fixed contrast */
 #services {
   padding: var(--section-padding);
-  background: var(--secondary-color);
+  background: var(--background-color);
 }
 
 #services h2 {
@@ -623,7 +624,7 @@ section {
 /* Contact Section - Fixed contrast */
 #contact {
   padding: var(--section-padding);
-  background: var(--secondary-color);
+  background: var(--background-color);
 }
 
 #contact h2 {
@@ -709,7 +710,7 @@ section {
 /* Form styling improvements - Fixed contrast */
 .form-group input[type="submit"],
 #button {
-  background: #d01010; /* Darker red for better contrast */
+  background: #000000; /* Darker red for better contrast */
   color: var(--white);
   border: none;
   padding: 12px 30px;
@@ -763,7 +764,7 @@ section {
 .form-group label[for="from_email"]::after,
 .form-group label[for="message"]::after {
   content: " *";
-  color: #ff8888; /* Lighter red for better contrast on dark background */
+  color: #000000; /* Lighter red for better contrast on dark background */
   font-weight: bold;
 }
 
@@ -815,7 +816,7 @@ section {
 }
 
 .testimonial {
-  background: var(--secondary-color);
+  background: var(--background-color);
   padding: 2rem;
   border-radius: var(--border-radius);
   box-shadow: var(--shadow);
@@ -849,7 +850,7 @@ section {
 
 /* Footer - Fixed contrast */
 footer {
-  background: var(--secondary-color);
+  background: var(--background-color);
   color: #f0f0f0; /* Very light gray for better contrast */
   padding: 3rem 2rem 2rem 2rem;
 }
@@ -880,7 +881,7 @@ footer {
 }
 
 .footer-content h2 {
-  color: #ff6666; /* Brighter red for better contrast on dark background */
+  color: #ffffff; /* Brighter red for better contrast on dark background */
   font-size: 1.3rem;
   margin-bottom: 1rem;
   position: relative;
