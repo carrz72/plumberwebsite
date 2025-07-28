@@ -6,13 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carr Denzy Plumbing & Gas</title>
 
-    <!-- Immediate LCP image preload with highest priority -->
-    <link rel="preload" href="/images/portf 1.webp" as="image" fetchpriority="high" crossorigin>
-
-    <!-- Preload critical fonts to prevent FOUT -->
+    <!-- Preload critical assets -->
+    <link rel="preload" href="/images/portf 1.webp" as="image" fetchpriority="high">
     <link rel="preload"
-        href="https://fonts.gstatic.com/s/materialsymbolsoutlined/v251/kJF1BvYX7BgnkSrUwT8OhrdQw4oELdPIeeII9v6oDMzByHX9rA6RzaxHMPdY.woff2"
-        as="font" type="font/woff2" crossorigin>
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Material+Symbols+Outlined&display=swap"
+        as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 
     <!-- DNS prefetches for external resources -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,227 +19,16 @@
     <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
     <link rel="dns-prefetch" href="https://cdn.emailjs.com">
 
-    <!-- Critical CSS - Expanded to include hero section -->
-    <style>
-        /* Critical CSS for immediate LCP rendering */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
 
-        :root {
-            --primary-color: #fc2020;
-            --secondary-color: #333;
-            --text-color: #444;
-            --white: #ffffff;
-        }
-
-        html {
-            scroll-behavior: smooth;
-            overflow-x: hidden;
-        }
-
-        body {
-            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-            line-height: 1.6;
-            color: var(--text-color);
-            overflow-x: hidden;
-            margin: 0;
-            padding: 0;
-        }
-
-        /* Fixed header - immediate render */
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            height: 70px;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            height: 100%;
-        }
-
-        .logo-text {
-            color: var(--primary-color);
-            margin: 0;
-            font-size: clamp(1.2rem, 3vw, 1.8rem);
-            font-weight: 600;
-            line-height: 1.2;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-            margin: 0;
-            padding: 0;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-color);
-            font-weight: 500;
-            padding: 0.5rem 0;
-        }
-
-        .mobile-menu-toggle {
-            display: none;
-            position: fixed;
-            right: 20px;
-            top: 20px;
-            width: 30px;
-            height: 30px;
-            cursor: pointer;
-            z-index: 1001;
-        }
-
-        /* Optimized hero section for immediate LCP */
-        #home {
-            min-height: 100vh;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            color: var(--white);
-            padding: 2rem;
-            padding-top: calc(70px + 2rem);
-            position: relative;
-            /* Remove background initially to speed up render */
-            background-color: #333;
-        }
-
-        /* Immediate background overlay */
-        #home::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(252, 32, 32, 0.9), rgba(51, 51, 51, 0.8));
-            z-index: -2;
-        }
-
-        /* Background image will be added via JavaScript after load */
-        #home::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: url('/images/portf 1.webp');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            z-index: -3;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        #home.bg-loaded::after {
-            opacity: 1;
-        }
-
-        #home h1 {
-            margin-bottom: 1.5rem;
-            max-width: 800px;
-            font-size: clamp(1.8rem, 4vw, 2.5rem);
-            font-weight: 600;
-            line-height: 1.2;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-        }
-
-        #home p {
-            max-width: 600px;
-            margin: 0 auto 2rem auto;
-            font-size: 1.1rem;
-            opacity: 0.95;
-            line-height: 1.6;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-        }
-
-        #home button {
-            background: #d01010;
-            color: var(--white);
-            border: none;
-            padding: 12px 30px;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            min-width: 120px;
-            min-height: 48px;
-            transition: all 0.3s ease;
-        }
-
-        #home button:hover {
-            background: #b00e0e;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-        }
-
-        /* Mobile optimizations */
-        @media (max-width: 768px) {
-            .mobile-menu-toggle {
-                display: block;
-            }
-
-            .nav-links {
-                position: fixed;
-                top: 0;
-                right: -100%;
-                width: 80%;
-                max-width: 300px;
-                height: 100vh;
-                background: rgba(255, 255, 255, 0.98);
-                backdrop-filter: blur(15px);
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                transition: right 0.3s ease;
-                z-index: 1000;
-                gap: 2rem;
-                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-            }
-
-            #home {
-                padding-top: calc(70px + 1rem);
-                min-height: calc(100vh - 70px);
-            }
-
-            #home::after {
-                background-attachment: scroll;
-            }
-        }
-    </style>
-
-    <!-- Load main CSS asynchronously -->
-    <link rel="preload" href="styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <!-- Fonts -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Material+Symbols+Outlined&display=swap">
     <noscript>
+        <link rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Material+Symbols+Outlined&display=swap">
         <link rel="stylesheet" href="styles.css">
-    </noscript>
-
-    <!-- Load fonts asynchronously -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&display=swap"
-        as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&display=swap">
     </noscript>
 
     <!-- Favicon and App Icons -->
@@ -255,435 +43,403 @@
     <meta name="keywords"
         content="carrdenzy,carrdenzy limted, carrdenzy plumbing and gas, CD, plumbing, gas, heating, electrical, Nottingham and surrounding areas, emergency, Gas Safe, REFCOM">
     <meta name="author" content="Carr Denzy Plumbing & Gas">
-
-    <!-- Open Graph meta tags for social media sharing -->
     <meta property="og:title" content="Carr Denzy Plumbing & Gas - Professional Services">
     <meta property="og:description"
         content="Professional plumbing, gas, heating and electrical services in Nottingham and surrounding areas. Gas Safe registered with 20+ years experience.">
     <meta property="og:image" content="/images/carr_denzy_logo_1.webp">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://carrdenzy.com">
-
-    <!-- Twitter Card meta tags -->
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Carr Denzy Plumbing & Gas">
     <meta name="twitter:description"
         content="Professional plumbing, gas, heating and electrical services in Nottingham and surrounding areas.">
     <meta name="twitter:image" content="/images/plumber.png">
-
-    <!-- Performance optimization meta tags -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="theme-color" content="#fc2020">
     <meta name="msapplication-TileColor" content="#fc2020">
 </head>
 
 <body>
-    <!-- Immediate background image load script -->
-    <script>
-        // Load hero background image immediately
-        (function () {
-            const heroImg = new Image();
-            heroImg.src = '/images/portf 1.webp';
-            heroImg.onload = function () {
-                const hero = document.getElementById('home');
-                if (hero) {
-                    hero.classList.add('bg-loaded');
-                }
-            };
-        })();
-    </script>
-
-    <div class="background">
-        <header>
-            <nav>
-                <div class="logo">
-                    <div class="logo-text"> Carr Denzy Plumbing & Gas <span
-                            class="material-symbols-outlined">handyman</span>
-                    </div>
-                </div>
-
-                <div class="mobile-menu-toggle">
-                    <span class="material-symbols-outlined">menu</span>
-                </div>
-
-                <ul class="nav-links">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#about">About Us</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
-        </header>
-        <main>
-            <section id="home">
-                <h1>We offer a wide range of plumbing solutions for your needs.</h1>
-                <p>We're committed to providing reliable, high-quality plumbing services tailored to meet the needs of
-                    both residential and commercial customers. With years of experience and a team of skilled
-                    professionals, we take pride in delivering top-notch solutions for all your plumbing challenges.
-                </p>
-                <button>Get a Quote</button>
-            </section>
-
-            <section id="choose-us">
-                <!-- Add explicit width and height to prevent layout shift -->
-                <img src="/images/portf 33.WEBP" alt="Professional plumbing work" loading="lazy" decoding="async"
-                    width="500" height="350" style="aspect-ratio: 500/350;">
-                <div>
-                    <h2>Why Choose Us?</h2>
-                    <p>Our team of experienced plumbers is dedicated to providing the best possible service to our
-                        customers. We take pride in our work and strive to deliver top-notch solutions for all your
-                        housing needs. Whether you need a simple repair or a complete house extension overhaul, we're here to
-                        help.</p>
-                </div>
-            </section>
-        </main>
-    </div>
-
-    <section id="about">
-        <div class="about-content">
-            <!-- Add explicit dimensions and aspect ratio -->
-            <img src="/images/portf 5.WEBP" alt="Professional engineer" loading="lazy" decoding="async" width="500"
-                height="400" style="aspect-ratio: 500/400;">
-            <div>
-                <h2>About Carr Denzy</h2>
-                <h3>Your Trusted Local Plumbers</h3>
-                <p>At Carr Denzy Plumbing & Gas, we're committed to providing reliable, high-quality plumbing services
-                    tailored to meet the needs of both residential and commercial customers. With years of experience
-                    and a team of skilled professionals, we take pride in delivering top-notch solutions for all your
-                    home challenges.</p>
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="/images/carr_denzy_logo_1.webp" alt="Carr Denzy Logo" class="logo-img">
+                <div class="logo-text">Carr Denzy <span class="logo-subtitle">Plumbing & Gas</span></div>
             </div>
-        </div>
-        <div class="outside-tags">
-            <h2>You're home in the safest hands</h2>
-            <ul>
-                <li>Professional Service <span class="material-symbols-outlined">check</span></li>
-                <li>Accredited installers of Worcester and Bosch <span class="material-symbols-outlined">check</span>
-                </li>
-                <li>Over 20 years plumbing and heating expertise <span class="material-symbols-outlined">check</span>
-                </li>
-                <li>Gas Safe and REFCOM registered <span class="material-symbols-outlined">check</span></li>
+
+            <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                <span class="material-symbols-outlined">menu</span>
+            </button>
+
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#testimonials">Reviews</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="tel:+447123456789" class="nav-cta">
+                        <span class="material-symbols-outlined">call</span>
+                        Call Now
+                    </a></li>
             </ul>
-        </div>
-    </section>
+        </nav>
+    </header>
 
-    <section id="services">
-        <h2>Our Services</h2>
-        <div class="services">
-            <div class="service-content">
-                <img src="/images/plumber.webp" alt="Plumbing services icon">
-                <div class="service-text">
-                    <h3>Plumbing</h3>
-                    <p>Our team of experienced plumbers is dedicated to providing the best possible service to our
-                        customers. We take pride in our work and strive to deliver top-notch solutions for all your
-                        plumbing needs. Whether you need a simple repair or a complete plumbing overhaul, we're here
-                        to help.</p>
+    <main>
+        <section id="home">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span class="material-symbols-outlined">verified</span>
+                    Gas Safe Registered • 20+ Years Experience
                 </div>
-            </div>
-            <div class="service-content">
-                <img src="/images/gas-fuel.webp" alt="Gas services icon">
-                <div class="service-text">
-                    <h3>Gas</h3>
-                    <p>Our team of experienced plumbers is dedicated to providing the best possible service to our
-                        customers. We take pride in our work and strive to deliver top-notch solutions for all your
-                        plumbing needs. Whether you need a simple repair or a complete plumbing overhaul, we're here
-                        to help.</p>
+                <h1>Professional Plumbing & Gas Services in Nottingham</h1>
+                <p class="hero-subtitle">Expert plumbing, heating, gas, and electrical services. Licensed, insured, and
+                    Gas Safe registered.</p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn btn-primary">
+                        <span class="material-symbols-outlined">description</span>
+                        Get Free Quote
+                    </a>
+                    <a href="tel:07123456789" class="btn btn-secondary">
+                        <span class="material-symbols-outlined">call</span>
+                        Call Emergency
+                    </a>
                 </div>
-            </div>
-
-            <div class="service-content">
-                <img src="/images/heater.webp" alt="Heating services icon">
-                <div class="service-text">
-                    <h3>Heating</h3>
-                    <p>Our team of experienced plumbers is dedicated to providing the best possible service to our
-                        customers. We take pride in our work and strive to deliver top-notch solutions for all your
-                        plumbing needs. Whether you need a simple repair or a complete plumbing overhaul, we're here
-                        to help.</p>
-                </div>
-            </div>
-
-            <div class="service-content">
-                <img src="/images/electrician.webp" alt="Electrical services icon">
-                <div class="service-text">
-                    <h3>Electricals</h3>
-                    <p>Our team of experienced plumbers is dedicated to providing the best possible service to our
-                        customers. We take pride in our work and strive to deliver top-notch solutions for all your
-                        plumbing needs. Whether you need a simple repair or a complete plumbing overhaul, we're here
-                        to help.</p>
-                </div>
-            </div>
-
-            <div class="service-content">
-                <img src="/images/house.webp" alt="Building maintenance services icon">
-                <div class="service-text">
-                    <h3>Building Maintenance</h3>
-                    <p>Our team of experienced plumbers is dedicated to providing the best possible service to our
-                        customers. We take pride in our work and strive to deliver top-notch solutions for all your
-                        plumbing needs. Whether you need a simple repair or a complete plumbing overhaul, we're here
-                        to help.</p>
-                </div>
-            </div>
-
-            <div class="service-content">
-                <img src="/images/extension.webp" alt="Building extension services icon">
-                <div class="service-text">
-                    <h3>Building Extension</h3>
-                    <p>Our team of experienced plumbers is dedicated to providing the best possible service to our
-                        customers. We take pride in our work and strive to deliver top-notch solutions for all your
-                        plumbing needs. Whether you need a simple repair or a complete plumbing overhaul, we're here
-                        to help.</p>
-                </div>
-            </div>
-
-            <div class="service-content">
-                <img src="/images/wall.webp" alt="Building services icon">
-                <div class="service-text">
-                    <h3>Building</h3>
-                    <p>Our team of experienced plumbers is dedicated to providing the best possible service to our
-                        customers. We take pride in our work and strive to deliver top-notch solutions for all your
-                        plumbing needs. Whether you need a simple repair or a complete plumbing overhaul, we're here
-                        to help.</p>
-                </div>
-            </div>
-
-            <div class="service-content">
-                <img src="/images/foreman.webp" alt="Project management services icon">
-                <div class="service-text">
-                    <h3>Project Management</h3>
-                    <p>Our team of experienced plumbers is dedicated to providing the best possible service to our
-                        customers. We take pride in our work and strive to deliver top-notch solutions for all your
-                        plumbing needs. Whether you need a simple repair or a complete plumbing overhaul, we're here
-                        to help.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="portfolio">
-        <h2>Our Work</h2>
-        <div class="portfolio-container">
-            <div class="portfolio-imgs">
-                <img src="/images/portf 33.WEBP" alt="Garden renovation and garage conversion project" loading="lazy"
-                    decoding="async" width="250" height="250">
-            </div>
-            <div class="portfolio-imgs">
-                <img src="/images/portf 18.WEBP" alt="Garden renovation and garage conversion project" loading="lazy"
-                    decoding="async" width="250" height="250">
-            </div>
-            <div class="portfolio-imgs">
-                <img src="/images/portf 12.WEBP" alt="Garden renovation and garage conversion project" loading="lazy"
-                    decoding="async" width="250" height="250">
-            </div>
-            <div class="portfolio-imgs">
-                <img src="/images/portf 22.WEBP" alt="laminate floor renovation project" loading="lazy" width="250"
-                    height="250">
-            </div>
-            <div class="portfolio-imgs">
-                <img src="/images/portf 15.WEBP" alt="Garden floor renovation project before" loading="lazy"
-                    decoding="async" width="250" height="250">
-            </div>
-            <div class="portfolio-imgs">
-                <img src="/images/portf 10.WEBP" alt="Garden floor renovation project after" loading="lazy"
-                    decoding="async" width="250" height="250">
-            </div>
-            <div class="portfolio-imgs">
-                <img src="/images/portf 16.WEBP" alt="Shed creation project before" loading="lazy" decoding="async"
-                    width="250" height="250">
-            </div>
-            <div class="portfolio-imgs">
-                <img src="/images/portf 31.WEBP" alt="Shed creation project after" loading="lazy" decoding="async"
-                    width="250" height="250">
-            </div>
-            <div class="portfolio-imgs">
-                <img src="/images/portf 24.WEBP" alt="Boiler installation project" loading="lazy" decoding="async"
-                    width="250" height="250">
-            </div>
-            <div class="portfolio-imgs">
-                <img src="/images/portf 14.WEBP" alt="New pipe installation project" loading="lazy" decoding="async"
-                    width="250" height="250">
-            </div>
-            <div class="portfolio-imgs">
-                <img src="/images/portf 34.WEBP" alt="Kitchen installation project" loading="lazy" decoding="async"
-                    width="250" height="250">
-            </div>
-            <div class="portfolio-imgs">
-                <img src="/images/portf 1.WEBP" alt="Kitchen installation" loading="lazy" decoding="async" width="250"
-                    height="250">
-            </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact">
-        <h2>Contact Us</h2>
-        <div class="contact-container">
-            <div class="contact-info">
-                <h3>Get in Touch</h3>
-                <p id="discription">Need our services or have questions? Fill out the form below or contact us directly.
-                </p>
-                <div class="contact-details">
-                    <div class="contact-item">
-                        <span class="material-symbols-outlined">phone</span>
-                        <p>+44 793 463358</p>
+                <div class="hero-features">
+                    <div class="feature-item">
+                        <span class="material-symbols-outlined">workspace_premium</span>
+                        <span>Gas Safe Certified</span>
                     </div>
-                    <div class="contact-item">
-                        <span class="material-symbols-outlined">mail</span>
-                        <p>carrdenzy@gmail.com</p>
+                    <div class="feature-item">
+                        <span class="material-symbols-outlined">trending_up</span>
+                        <span>20+ Years Experience</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="material-symbols-outlined">security</span>
+                        <span>Fully Insured</span>
                     </div>
                 </div>
             </div>
-            <div class="contact-form">
-                <form id="form">
-                    <div id="form-feedback" class="form-feedback" style="display: none;"></div>
-                    <div class="form-group">
-                        <label for="from_name">Name</label>
-                        <input type="text" id="from_name" name="from_name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="from_email">Email</label>
-                        <input type="email" id="from_email" name="from_email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="phone">Phone</label>
-                        <input type="tel" id="phone" name="phone">
-                    </div>
-                    <div class="form-group">
-                        <label for="service">Service Needed</label>
-                        <input type="text" id="service" name="service" placeholder="e.g., Plumbing, Gas, Heating">
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Message</label>
-                        <textarea id="message" name="message" rows="4" required></textarea>
-                    </div>
-                    <div class="form-group" style="display: none;">
-                        <input type="text" name="to_name" id="to_name" value="Carr Denzy Plumbing & Gas">
-                    </div>
-                    <input type="submit" id="button" value="Send Message">
-                    <p class="form-note">We'll get back to you as soon as possible.</p>
-                </form>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Testimonials Section -->
-    <section id="testimonials">
-        <h2>What Our Customers Say</h2>
-        <div class="testimonials-container">
-            <div class="testimonial">
-                <div class="stars">
-                    <span class="material-symbols-outlined">star</span>
-                    <span class="material-symbols-outlined">star</span>
-                    <span class="material-symbols-outlined">star</span>
-                    <span class="material-symbols-outlined">star</span>
-                    <span class="material-symbols-outlined">star</span>
+        <section id="about">
+            <div class="container about-content">
+                <div class="about-image">
+                    <img src="/images/portf 5.WEBP" alt="Professional engineer" loading="lazy" decoding="async"
+                        width="500" height="400">
                 </div>
-                <p>"Carr Denzy Plumbing responded quickly to my emergency call. They were professional, efficient and
-                    reasonably priced. Highly recommend!"</p>
-                <h3>Sarah Thompson</h3>
-            </div>
-            <div class="testimonial">
-                <div class="stars">
-                    <span class="material-symbols-outlined">star</span>
-                    <span class="material-symbols-outlined">star</span>
-                    <span class="material-symbols-outlined">star</span>
-                    <span class="material-symbols-outlined">star</span>
-                    <span class="material-symbols-outlined">star</span>
+                <div class="about-text">
+                    <h2 class="section-title">About Carr Denzy</h2>
+                    <h3 class="section-subtitle">Your Trusted Local Plumbers</h3>
+                    <p>At Carr Denzy Plumbing & Gas, we're committed to providing reliable, high-quality plumbing
+                        services
+                        tailored to meet the needs of both residential and commercial customers. With years of
+                        experience
+                        and a team of skilled professionals, we take pride in delivering top-notch solutions for all
+                        your
+                        home challenges.</p>
+                    <ul class="benefits-list">
+                        <li><span class="material-symbols-outlined">check</span> Professional Service</li>
+                        <li><span class="material-symbols-outlined">check</span> Accredited installers of Worcester and
+                            Bosch</li>
+                        <li><span class="material-symbols-outlined">check</span> Over 20 years plumbing and heating
+                            expertise</li>
+                        <li><span class="material-symbols-outlined">check</span> Gas Safe and REFCOM registered</li>
+                    </ul>
                 </div>
-                <p>"The team installed our new bathroom with exceptional attention to detail. Clean, tidy and
-                    professional from start to finish."</p>
-                <h3>James Wilson</h3>
             </div>
-            <div class="testimonial">
-                <div class="stars">
-                    <span class="material-symbols-outlined">star</span>
-                    <span class="material-symbols-outlined">star</span>
-                    <span class="material-symbols-outlined">star</span>
-                    <span class="material-symbols-outlined">star</span>
-                    <span class="material-symbols-outlined">star_half</span>
+        </section>
+
+        <section id="services">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Our Expert Services</h2>
+                    <p class="section-subtitle">Comprehensive plumbing, heating, gas, and electrical solutions for homes
+                        and
+                        businesses</p>
                 </div>
-                <p>"Very reliable service for our commercial property maintenance. Always available when we need them
-                    and solve problems quickly."</p>
-                <h3>Emma Roberts</h3>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <img src="/images/plumber.webp" alt="Plumbing services icon">
+                        </div>
+                        <h3>Plumbing Services</h3>
+                        <p>Complete plumbing solutions including repairs, installations, leak detection, and pipe
+                            replacements.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <img src="/images/gas-fuel.webp" alt="Gas services icon">
+                        </div>
+                        <h3>Gas Services</h3>
+                        <p>Gas Safe registered engineers for appliance installations, safety checks, and repairs.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <img src="/images/heater.webp" alt="Heating services icon">
+                        </div>
+                        <h3>Heating Systems</h3>
+                        <p>Central heating installations, boiler repairs, and underfloor heating systems.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <img src="/images/electrician.webp" alt="Electrical services icon">
+                        </div>
+                        <h3>Electrical Work</h3>
+                        <p>Qualified electricians for domestic and commercial installations, repairs, and testing.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <img src="/images/house.webp" alt="Building maintenance icon">
+                        </div>
+                        <h3>Property Maintenance</h3>
+                        <p>Comprehensive building maintenance including general repairs and preventive care.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <img src="/images/extension.webp" alt="Home extensions icon">
+                        </div>
+                        <h3>Home Extensions</h3>
+                        <p>Complete home extension services from planning and design to completion.</p>
+                    </div>
+                </div>
+                <div class="services-cta">
+                    <h3>Need a Custom Solution?</h3>
+                    <p>Contact us for a free consultation and personalized quote for your specific requirements.</p>
+                    <a href="#contact" class="btn btn-primary">
+                        <span class="material-symbols-outlined">support_agent</span>
+                        Get Free Consultation
+                    </a>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+
+        <section id="portfolio">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Our Work</h2>
+                    <p class="section-subtitle">A selection of our recently completed projects.</p>
+                </div>
+                <div class="portfolio-grid">
+                    <div class="portfolio-item">
+                        <img src="/images/portf 33.WEBP" alt="Garden renovation and garage conversion project"
+                            loading="lazy" decoding="async" width="250" height="250">
+                    </div>
+                    <div class="portfolio-item">
+                        <img src="/images/portf 18.WEBP" alt="Garden renovation and garage conversion project"
+                            loading="lazy" decoding="async" width="250" height="250">
+                    </div>
+                    <div class="portfolio-item">
+                        <img src="/images/portf 12.WEBP" alt="Garden renovation and garage conversion project"
+                            loading="lazy" decoding="async" width="250" height="250">
+                    </div>
+                    <div class="portfolio-item">
+                        <img src="/images/portf 22.WEBP" alt="laminate floor renovation project" loading="lazy"
+                            width="250" height="250">
+                    </div>
+                    <div class="portfolio-item">
+                        <img src="/images/portf 15.WEBP" alt="Garden floor renovation project before" loading="lazy"
+                            decoding="async" width="250" height="250">
+                    </div>
+                    <div class="portfolio-item">
+                        <img src="/images/portf 10.WEBP" alt="Garden floor renovation project after" loading="lazy"
+                            decoding="async" width="250" height="250">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="testimonials">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">What Our Customers Say</h2>
+                </div>
+                <div class="testimonials-grid">
+                    <div class="testimonial-card">
+                        <div class="stars">
+                            <span class="material-symbols-outlined">star</span>
+                            <span class="material-symbols-outlined">star</span>
+                            <span class="material-symbols-outlined">star</span>
+                            <span class="material-symbols-outlined">star</span>
+                            <span class="material-symbols-outlined">star</span>
+                        </div>
+                        <p>"Carr Denzy Plumbing responded quickly to my emergency call. They were professional,
+                            efficient and
+                            reasonably priced. Highly recommend!"</p>
+                        <h3>Sarah Thompson</h3>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="stars">
+                            <span class="material-symbols-outlined">star</span>
+                            <span class="material-symbols-outlined">star</span>
+                            <span class="material-symbols-outlined">star</span>
+                            <span class="material-symbols-outlined">star</span>
+                            <span class="material-symbols-outlined">star</span>
+                        </div>
+                        <p>"The team installed our new bathroom with exceptional attention to detail. Clean, tidy and
+                            professional from start to finish."</p>
+                        <h3>James Wilson</h3>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="stars">
+                            <span class="material-symbols-outlined">star</span>
+                            <span class="material-symbols-outlined">star</span>
+                            <span class="material-symbols-outlined">star</span>
+                            <span class="material-symbols-outlined">star</span>
+                            <span class="material-symbols-outlined">star_half</span>
+                        </div>
+                        <p>"Very reliable service for our commercial property maintenance. Always available when we need
+                            them
+                            and solve problems quickly."</p>
+                        <h3>Emma Roberts</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Get Your Free Quote Today</h2>
+                    <p class="section-subtitle">Ready to start your project? Contact us for a free estimate and
+                        consultation.</p>
+                </div>
+                <div class="contact-container">
+                    <div class="contact-info">
+                        <h3>Contact Information</h3>
+                        <p>Get in touch for a free quote or consultation.</p>
+                        <div class="contact-details">
+                            <div class="contact-item">
+                                <span class="material-symbols-outlined">call</span>
+                                <div>
+                                    <h4>Call Us</h4>
+                                    <p><a href="tel:+447934633583">+44 793 463358</a></p>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <span class="material-symbols-outlined">mail</span>
+                                <div>
+                                    <h4>Email Us</h4>
+                                    <p><a href="mailto:carrdenzy@gmail.com">carrdenzy@gmail.com</a></p>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <span class="material-symbols-outlined">location_on</span>
+                                <div>
+                                    <h4>Service Area</h4>
+                                    <p>Nottingham & Surrounding Areas</p>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <span class="material-symbols-outlined">schedule</span>
+                                <div>
+                                    <h4>Business Hours</h4>
+                                    <p>Mon-sat: 8AM-5PM</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-form">
+                        <form id="form">
+                            <div id="form-feedback" class="form-feedback" style="display: none;"></div>
+                            <div class="form-group">
+                                <label for="from_name">Full Name</label>
+                                <input type="text" id="from_name" name="from_name" required
+                                    placeholder="Enter your full name">
+                            </div>
+                            <div class="form-group">
+                                <label for="from_email">Email Address</label>
+                                <input type="email" id="from_email" name="from_email" required
+                                    placeholder="your.email@example.com">
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone" name="phone" placeholder="Your phone number">
+                            </div>
+                            <div class="form-group">
+                                <label for="service">Service Required</label>
+                                <select id="service" name="service" required>
+                                    <option value="">Select a service</option>
+                                    <option value="Emergency Plumbing">Emergency Plumbing</option>
+                                    <option value="General Plumbing">General Plumbing</option>
+                                    <option value="Gas Services">Gas Services</option>
+                                    <option value="Heating & Boilers">Heating & Boilers</option>
+                                    <option value="Electrical Work">Electrical Work</option>
+                                    <option value="Property Maintenance">Property Maintenance</option>
+                                    <option value="Home Extensions">Home Extensions</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Project Description</label>
+                                <textarea id="message" name="message" placeholder="Your Message" rows="5"
+                                    required></textarea>
+                            </div>
+                            <input type="hidden" name="to_name" id="to_name" value="Carr Denzy Plumbing & Gas">
+                            <button type="submit" id="submit-btn" class="btn btn-primary">
+                                <span class="material-symbols-outlined">send</span>
+                                Get Free Quote
+                            </button>
+                            <p class="form-note">
+                                <span class="material-symbols-outlined">lock</span>
+                                Your information is secure.
+                            </p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
     <footer>
-        <div class="footer-content">
-            <div>
-                <h2>About Carr Denzy</h2>
-                <ul>
-                    <li>Professional plumbing, gas, and electrical services</li>
-                    <li>Gas Safe & REFCOM registered</li>
-                    <li>20+ years of experience</li>
-                    <li>Emergency callouts available</li>
-                    <li>Serving Nottingham, surrounding areas and further</li>
-                    <li>Licensed and insured</li>
-                </ul>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <h4>About Carr Denzy</h4>
+                    <p>Your trusted partner for plumbing, gas, and heating services in Nottingham. Licensed, insured,
+                        and committed to quality.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#portfolio">Portfolio</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact Info</h4>
+                    <ul>
+                        <li><span class="material-symbols-outlined">call</span> <a href="tel:+447934633583">+44 793
+                                463358</a></li>
+                        <li><span class="material-symbols-outlined">mail</span> <a
+                                href="mailto:carrdenzy@gmail.com">carrdenzy@gmail.com</a></li>
+                        <li><span class="material-symbols-outlined">location_on</span> Nottingham, UK</li>
+                    </ul>
+                </div>
             </div>
-
-            <div>
-                <h2>Our Services</h2>
-                <ul>
-                    <li><a href="#services">Plumbing Services</a></li>
-                    <li><a href="#services">Gas Installation & Repair</a></li>
-                    <li><a href="#services">Heating Systems</a></li>
-                    <li><a href="#services">Electrical Work</a></li>
-                    <li><a href="#services">Building Services</a></li>
-                    <li><a href="#services">Maintenance & Repairs</a></li>
-                    <li><a href="#services">Emergency Services</a></li>
-                </ul>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Carr Denzy Plumbing & Gas. All rights reserved. | Gas Safe Registered</p>
             </div>
-
-            <div>
-                <h2>Contact Info</h2>
-                <ul>
-                    <li> +44 793 463358</li>
-                    <li>carrdenzy@gmail.com</li>
-                    <li>Nottingham, UK</li>
-                </ul>
-            </div>
-
-            <div>
-                <h2>Quick Links</h2>
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About Us</a></li>
-                    <li><a href="#portfolio">Our Work</a></li>
-                    <li><a href="#testimonials">Reviews</a></li>
-                    <li><a href="#contact">Get Quote</a></li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="footer-bottom">
-            <p>&copy; 2025 Carr Denzy Plumbing & Gas. All rights reserved. | Licensed & Insured | Gas Safe Registered
-            </p>
         </div>
     </footer>
 
     <!-- Image Modal/Lightbox -->
     <div id="imageModal" class="modal">
+        <span class="modal-close">&times;</span>
         <div class="modal-content">
-            <span class="modal-close">&times;</span>
-            <img class="modal-image" id="modalImg" alt="" loading="lazy" decoding="async">
+            <img class="modal-image" id="modalImg" alt="Portfolio image" loading="lazy">
             <div class="modal-caption" id="caption"></div>
-            <div class="modal-nav modal-prev">&#10094;</div>
-            <div class="modal-nav modal-next">&#10095;</div>
         </div>
+        <a class="modal-prev">&#10094;</a>
+        <a class="modal-next">&#10095;</a>
     </div>
 
-    <!-- Optimized script loading -->
-    <script>
-        // Enhanced LCP optimization
-        document.addEventListener('DOMContentLoaded', function () {
-            // Force immediate hero section paint
-            const hero = document.getElementById('home');
-            if (hero) {
-                hero.style.willChange = 'auto';
-            }
-        });
-    </script>
-
-    <!-- Defer all non-critical JavaScript -->
+    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" defer></script>
     <script src="script.js" defer></script>
 </body>
