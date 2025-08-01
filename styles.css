@@ -569,9 +569,33 @@ section#home h1 {
   border-left: 4px solid var(--primary-color);
 }
 
-.stars {
-  color: #f59e0b; /* Amber color for stars */
+/* Star Rating Styles */
+.rating {
+  display: inline-block;
   margin-bottom: 1rem;
+  pointer-events: none;
+}
+
+.rating input {
+  display: none;
+}
+
+.rating label {
+  float: right;
+  color: #ccc;
+  font-size: 30px;
+  transition: color 0.3s;
+  cursor: default;
+  pointer-events: none;
+}
+
+.rating label:before {
+  content: "\2605";
+}
+
+.rating input:checked ~ label,
+.rating input:checked ~ label ~ label {
+  color: #ff0f0f;
 }
 
 .testimonial-card p {
@@ -970,6 +994,10 @@ footer {
   }
 
   /* Navigation improvements */
+  .material-symbols-outlined {
+    font-size: 1.4rem !important;
+    vertical-align: middle;
+  }
   .nav-links {
     position: fixed;
     top: 70px;
@@ -1134,6 +1162,10 @@ footer {
   }
 
   /* Navigation */
+  .material-symbols-outlined {
+    font-size: 1.2rem !important;
+    vertical-align: middle;
+  }
   nav {
     height: 60px;
     padding: 0 0.75rem;
