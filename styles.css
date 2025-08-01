@@ -996,7 +996,11 @@ footer {
   /* Navigation improvements */
   .material-symbols-outlined {
     font-size: 1.4rem !important;
+    line-height: 1;
     vertical-align: middle;
+    display: inline-block;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
   .nav-links {
     position: fixed;
@@ -1164,7 +1168,11 @@ footer {
   /* Navigation */
   .material-symbols-outlined {
     font-size: 1.2rem !important;
+    line-height: 1;
     vertical-align: middle;
+    display: inline-block;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
   nav {
     height: 60px;
