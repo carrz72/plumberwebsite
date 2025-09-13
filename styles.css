@@ -1399,6 +1399,152 @@ footer {
   transform: translateY(0);
 }
 
+/* Utility reveal animations (scroll/load-in) */
+:root {
+  --reveal-duration: 2000ms;
+  --reveal-ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* base hidden state */
+.reveal,
+.reveal-up,
+.reveal-down,
+.reveal-left,
+.reveal-right,
+.reveal-zoom,
+.reveal-fade {
+  opacity: 0;
+  will-change: transform, opacity;
+  transition: transform var(--reveal-duration) var(--reveal-ease), opacity var(--reveal-duration) var(--reveal-ease);
+}
+
+/* initial offsets */
+.reveal-up { transform: translateY(24px); }
+.reveal-down { transform: translateY(-24px); }
+.reveal-left { transform: translateX(-24px); }
+.reveal-right { transform: translateX(24px); }
+.reveal-zoom { transform: scale(0.96); }
+.reveal-fade,
+.reveal { transform: none; }
+
+/* visible state (supports either .visible or .is-visible) */
+.visible,
+.is-visible {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* stagger helper: apply on container, JS sets delays, but provide sensible default */
+[data-stagger] > * {
+  transition-delay: 0ms;
+}
+
+/* Reduced motion: disable transform animations and shorten transitions */
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal-up,
+  .reveal-down,
+  .reveal-left,
+  .reveal-right,
+  .reveal-zoom,
+  .reveal-fade,
+  .fade-in-element {
+    transition: opacity 150ms ease-out;
+    transform: none !important;
+  }
+}
+
+/* 13. Hover & Focus Interactions
+-------------------------------------------------- */
+/* Only apply rich hover effects on devices that support hover */
+@media (hover: hover) and (pointer: fine) {
+  /* Buttons: subtle lift + glow */
+  .btn {
+    transition: transform 220ms var(--reveal-ease, ease), box-shadow 220ms var(--reveal-ease, ease), background-color 220ms ease, color 220ms ease;
+  }
+
+  .btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12), 0 10px 24px rgba(192, 0, 0, 0.20);
+  }
+
+  .btn:active {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.14);
+  }
+
+  /* Nav links: smoother underline and color */
+  .nav-links a::after {
+    height: 2px;
+    transition: width 240ms var(--reveal-ease, ease), background-color 240ms ease;
+  }
+
+  /* Service cards: stronger lift + icon motion */
+  .service-card {
+    transition: transform 260ms var(--reveal-ease, ease), box-shadow 260ms var(--reveal-ease, ease);
+  }
+
+  .service-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 14px 28px -8px rgba(0, 0, 0, 0.22), 0 10px 12px -8px rgba(0, 0, 0, 0.12);
+  }
+
+  .service-icon img {
+    transition: transform 300ms var(--reveal-ease, ease);
+  }
+
+  .service-card:hover .service-icon img {
+    transform: scale(1.08) rotate(1deg);
+  }
+
+  /* Portfolio: slight tilt + existing zoom/overlay */
+  .portfolio-item {
+    transition: transform 320ms var(--reveal-ease, ease), box-shadow 320ms var(--reveal-ease, ease);
+  }
+
+  .portfolio-item:hover {
+    transform: translateY(-4px) rotateZ(0.3deg);
+    box-shadow: 0 18px 35px -12px rgba(0, 0, 0, 0.35);
+  }
+
+  /* Testimonials: lift */
+  .testimonial-card {
+    transition: transform 260ms var(--reveal-ease, ease), box-shadow 260ms var(--reveal-ease, ease);
+  }
+
+  .testimonial-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 14px 28px -10px rgba(0, 0, 0, 0.22), 0 10px 12px -8px rgba(0, 0, 0, 0.12);
+  }
+
+  /* Contact items: nudge and icon emphasis */
+  .contact-item {
+    transition: transform 220ms var(--reveal-ease, ease);
+  }
+
+  .contact-item:hover {
+    transform: translateX(4px);
+  }
+
+  .contact-item .material-symbols-outlined {
+    transition: color 220ms ease, transform 220ms var(--reveal-ease, ease);
+  }
+
+  .contact-item:hover .material-symbols-outlined {
+    color: #ff4040; /* lighter variant of primary */
+    transform: scale(1.05);
+  }
+}
+
+/* Focus rings for keyboard navigation */
+.btn:focus-visible,
+.nav-links a:focus-visible,
+.footer-content a:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(192, 0, 0, 0.35);
+  border-radius: 6px;
+}
+
 /* Final override to fix h1 deprecation warning - place at end of file */
 * h1 {
   font-size: 2rem !important;

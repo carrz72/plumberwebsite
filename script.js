@@ -250,18 +250,43 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     }
 
-    // 6. Intersection Observer for animations
-    const animatedElements = document.querySelectorAll('.fade-in, .fade-in-up');
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, {
-        threshold: 0.1
-    });
+    // 6. Intersection Observer for animations (reveal utilities)
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const animatedElements = document.querySelectorAll('.fade-in, .fade-in-up, .reveal, .reveal-up, .reveal-down, .reveal-left, .reveal-right, .reveal-zoom, .reveal-fade');
 
-    animatedElements.forEach(el => observer.observe(el));
+    if (!prefersReducedMotion && animatedElements.length) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const el = entry.target;
+                    // Support optional stagger via parent [data-stagger]
+                    const parent = el.closest('[data-stagger]');
+                    if (parent && !el.dataset.staggerApplied) {
+                        const step = parseInt(parent.dataset.stagger || '80', 10);
+                        const children = Array.from(parent.children);
+                        const index = children.indexOf(el);
+                        el.style.transitionDelay = `${index * step}ms`;
+                        el.dataset.staggerApplied = 'true';
+                    }
+                    el.classList.add('visible', 'is-visible');
+                    observer.unobserve(el);
+                }
+            });
+        }, { threshold: 0.12, rootMargin: '0px 0px -5% 0px' });
+
+        animatedElements.forEach(el => observer.observe(el));
+
+        // Trigger any above-the-fold elements immediately
+        requestAnimationFrame(() => {
+            animatedElements.forEach(el => {
+                const rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight * 0.9) {
+                    el.classList.add('visible', 'is-visible');
+                }
+            });
+        });
+    } else {
+        // Reduced motion or no elements: make them visible without animation
+        animatedElements.forEach(el => el.classList.add('visible', 'is-visible'));
+    }
 });

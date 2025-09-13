@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 
 <head>
     <meta charset="UTF-8">
@@ -12,6 +12,11 @@
         href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Material+Symbols+Outlined&display=swap"
         as="style" onload="this.onload=null;this.rel='stylesheet'">
     <link rel="preload" href="styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+    <!-- Canonical and Internationalization -->
+    <link rel="canonical" href="https://carrdenzy.com/">
+    <link rel="alternate" hreflang="en-GB" href="https://carrdenzy.com/">
+    <link rel="alternate" hreflang="x-default" href="https://carrdenzy.com/">
 
     <!-- DNS prefetches for external resources -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -43,20 +48,69 @@
     <meta name="keywords"
         content="carrdenzy,carrdenzy limted, carrdenzy plumbing and gas, CD, plumbing, gas, heating, electrical, Nottingham and surrounding areas, emergency, Gas Safe, REFCOM">
     <meta name="author" content="Carr Denzy Plumbing & Gas">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="googlebot" content="index, follow">
+    <meta name="format-detection" content="telephone=no">
+
+    <!-- Open Graph -->
     <meta property="og:title" content="Carr Denzy Plumbing & Gas - Professional Services">
     <meta property="og:description"
         content="Professional plumbing, gas, heating and electrical services in Nottingham and surrounding areas. Gas Safe registered with 20+ years experience.">
-    <meta property="og:image" content="/images/carr_denzy_logo_1.webp">
+    <meta property="og:image" content="https://carrdenzy.com/images/carr_denzy_logo_1.webp">
+    <meta property="og:image:alt" content="Carr Denzy Plumbing & Gas logo">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://carrdenzy.com">
-    <meta name="twitter:card" content="summary">
+    <meta property="og:url" content="https://carrdenzy.com/">
+    <meta property="og:site_name" content="Carr Denzy Plumbing & Gas">
+    <meta property="og:locale" content="en_GB">
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Carr Denzy Plumbing & Gas">
     <meta name="twitter:description"
         content="Professional plumbing, gas, heating and electrical services in Nottingham and surrounding areas.">
-    <meta name="twitter:image" content="/images/plumber.png">
+    <meta name="twitter:image" content="https://carrdenzy.com/images/carr_denzy_logo_1.webp">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="theme-color" content="#fc2020">
     <meta name="msapplication-TileColor" content="#fc2020">
+
+        <!-- Structured Data: LocalBusiness (Plumber) -->
+        <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Plumber",
+            "name": "Carr Denzy Plumbing & Gas",
+            "url": "https://carrdenzy.com/",
+            "logo": "https://carrdenzy.com/images/carr_denzy_logo_1.webp",
+            "image": "https://carrdenzy.com/images/carr_denzy_logo_1.webp",
+            "telephone": "+44 793463358",
+            "email": "mailto:carrdenzy@gmail.com",
+            "priceRange": "££",
+            "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Nottingham",
+                "addressRegion": "Nottinghamshire",
+                "addressCountry": "GB"
+            },
+            "areaServed": {
+                "@type": "Place",
+                "name": "Nottingham and Surrounding Areas"
+            },
+            "openingHoursSpecification": [
+                {
+                    "@type": "OpeningHoursSpecification",
+                    "dayOfWeek": [
+                        "Monday",
+                        "Tuesday",
+                        "Wednesday",
+                        "Thursday",
+                        "Friday",
+                        "Saturday"
+                    ],
+                    "opens": "08:00",
+                    "closes": "17:00"
+                }
+            ]
+        }
+        </script>
 </head>
 
 <body>
@@ -88,34 +142,34 @@
 
     <main>
         <section id="home">
-            <div class="hero-content">
-                <div class="hero-badge">
+            <div class="hero-content reveal-fade visible is-visible">
+                <div class="hero-badge reveal-up">
                     <span class="material-symbols-outlined">verified</span>
                     Gas Safe Registered • 20+ Years Experience
                 </div>
-                <h1>Professional Plumbing & Gas Services in Nottingham</h1>
-                <p class="hero-subtitle">Expert plumbing, heating, gas, and electrical services. Licensed, insured, and
+                <h1 class="reveal-up">Professional Plumbing & Gas Services in Nottingham</h1>
+                <p class="hero-subtitle reveal-up">Expert plumbing, heating, gas, and electrical services. Licensed, insured, and
                     Gas Safe registered.</p>
-                <div class="hero-buttons">
-                    <a href="#contact" class="btn btn-primary">
+                <div class="hero-buttons" data-stagger>
+                    <a href="#contact" class="btn btn-primary reveal-up">
                         <span class="material-symbols-outlined">description</span>
                         Get Free Quote
                     </a>
-                    <a href="tel:07123456789" class="btn btn-secondary">
+                    <a href="tel:07123456789" class="btn btn-secondary reveal-up">
                         <span class="material-symbols-outlined">call</span>
                         Call Emergency
                     </a>
                 </div>
-                <div class="hero-features">
-                    <div class="feature-item">
+                <div class="hero-features" data-stagger>
+                    <div class="feature-item reveal-up">
                         <span class="material-symbols-outlined">workspace_premium</span>
                         <span>Gas Safe Certified</span>
                     </div>
-                    <div class="feature-item">
+                    <div class="feature-item reveal-up">
                         <span class="material-symbols-outlined">trending_up</span>
                         <span>20+ Years Experience</span>
                     </div>
-                    <div class="feature-item">
+                    <div class="feature-item reveal-up">
                         <span class="material-symbols-outlined">security</span>
                         <span>Fully Insured</span>
                     </div>
@@ -124,12 +178,12 @@
         </section>
 
         <section id="about">
-            <div class="container about-content">
-                <div class="about-image">
+            <div class="container about-content" data-stagger>
+                <div class="about-image reveal-left">
                     <img src="/images/portf 5.WEBP" alt="Professional engineer" loading="lazy" decoding="async"
                         width="500" height="400">
                 </div>
-                <div class="about-text">
+                <div class="about-text reveal-right">
                     <h2 class="section-title">About Carr Denzy</h2>
                     <h3 class="section-subtitle">Your Trusted Local Plumbers</h3>
                     <p>At Carr Denzy Plumbing & Gas, we're committed to providing reliable, high-quality plumbing
@@ -154,13 +208,13 @@
         <section id="services">
             <div class="container">
                 <div class="section-header">
-                    <h2 class="section-title">Our Expert Services</h2>
-                    <p class="section-subtitle">Comprehensive plumbing, heating, gas, and electrical solutions for homes
+                    <h2 class="section-title reveal-up">Our Expert Services</h2>
+                    <p class="section-subtitle reveal-up">Comprehensive plumbing, heating, gas, and electrical solutions for homes
                         and
                         businesses</p>
                 </div>
-                <div class="services-grid">
-                    <div class="service-card">
+                <div class="services-grid" data-stagger>
+                    <div class="service-card reveal-up">
                         <div class="service-icon">
                             <img src="/images/plumber.webp" alt="Plumbing services icon">
                         </div>
@@ -168,35 +222,35 @@
                         <p>Complete plumbing solutions including repairs, installations, leak detection, and pipe
                             replacements.</p>
                     </div>
-                    <div class="service-card">
+                    <div class="service-card reveal-up">
                         <div class="service-icon">
                             <img src="/images/gas-fuel.webp" alt="Gas services icon">
                         </div>
                         <h3>Gas Services</h3>
                         <p>Gas Safe registered engineers for appliance installations, safety checks, and repairs.</p>
                     </div>
-                    <div class="service-card">
+                    <div class="service-card reveal-up">
                         <div class="service-icon">
                             <img src="/images/heater.webp" alt="Heating services icon">
                         </div>
                         <h3>Heating Systems</h3>
                         <p>Central heating installations, boiler repairs, and underfloor heating systems.</p>
                     </div>
-                    <div class="service-card">
+                    <div class="service-card reveal-up">
                         <div class="service-icon">
                             <img src="/images/electrician.webp" alt="Electrical services icon">
                         </div>
                         <h3>Electrical Work</h3>
                         <p>Qualified electricians for domestic and commercial installations, repairs, and testing.</p>
                     </div>
-                    <div class="service-card">
+                    <div class="service-card reveal-up">
                         <div class="service-icon">
                             <img src="/images/house.webp" alt="Building maintenance icon">
                         </div>
                         <h3>Property Maintenance</h3>
                         <p>Comprehensive building maintenance including general repairs and preventive care.</p>
                     </div>
-                    <div class="service-card">
+                    <div class="service-card reveal-up">
                         <div class="service-icon">
                             <img src="/images/extension.webp" alt="Home extensions icon">
                         </div>
@@ -205,9 +259,9 @@
                     </div>
                 </div>
                 <div class="services-cta">
-                    <h3>Need a Custom Solution?</h3>
-                    <p>Contact us for a free consultation and personalized quote for your specific requirements.</p>
-                    <a href="#contact" class="btn btn-primary">
+                    <h3 class="reveal-up">Need a Custom Solution?</h3>
+                    <p class="reveal-up">Contact us for a free consultation and personalized quote for your specific requirements.</p>
+                    <a href="#contact" class="btn btn-primary reveal-up">
                         <span class="material-symbols-outlined">support_agent</span>
                         Get Free Consultation
                     </a>
@@ -218,31 +272,31 @@
         <section id="portfolio">
             <div class="container">
                 <div class="section-header">
-                    <h2 class="section-title">Our Work</h2>
-                    <p class="section-subtitle">A selection of our recently completed projects.</p>
+                    <h2 class="section-title reveal-up">Our Work</h2>
+                    <p class="section-subtitle reveal-up">A selection of our recently completed projects.</p>
                 </div>
-                <div class="portfolio-grid">
-                    <div class="portfolio-item">
+                <div class="portfolio-grid" data-stagger>
+                    <div class="portfolio-item reveal-up">
                         <img src="/images/portf 33.WEBP" alt="Garden renovation and garage conversion project"
                             loading="lazy" decoding="async" width="250" height="250">
                     </div>
-                    <div class="portfolio-item">
+                    <div class="portfolio-item reveal-up">
                         <img src="/images/portf 18.WEBP" alt="Garden renovation and garage conversion project"
                             loading="lazy" decoding="async" width="250" height="250">
                     </div>
-                    <div class="portfolio-item">
+                    <div class="portfolio-item reveal-up">
                         <img src="/images/portf 12.WEBP" alt="Garden renovation and garage conversion project"
                             loading="lazy" decoding="async" width="250" height="250">
                     </div>
-                    <div class="portfolio-item">
+                    <div class="portfolio-item reveal-up">
                         <img src="/images/portf 22.WEBP" alt="laminate floor renovation project" loading="lazy"
                             width="250" height="250">
                     </div>
-                    <div class="portfolio-item">
+                    <div class="portfolio-item reveal-up">
                         <img src="/images/portf 15.WEBP" alt="Garden floor renovation project before" loading="lazy"
                             decoding="async" width="250" height="250">
                     </div>
-                    <div class="portfolio-item">
+                    <div class="portfolio-item reveal-up">
                         <img src="/images/portf 10.WEBP" alt="Garden floor renovation project after" loading="lazy"
                             decoding="async" width="250" height="250">
                     </div>
@@ -253,10 +307,10 @@
         <section id="testimonials">
             <div class="container">
                 <div class="section-header">
-                    <h2 class="section-title">What Our Customers Say</h2>
+                    <h2 class="section-title reveal-up">What Our Customers Say</h2>
                 </div>
-                <div class="testimonials-grid">
-                    <div class="testimonial-card">
+                <div class="testimonials-grid" data-stagger>
+                    <div class="testimonial-card reveal-up">
                         <div class="rating">
                             <input value="5" name="rating1" id="star5-1" type="radio" checked>
                             <label for="star5-1"></label>
@@ -274,7 +328,7 @@
                             reasonably priced. Highly recommend!"</p>
                         <h3>Sarah Thompson</h3>
                     </div>
-                    <div class="testimonial-card">
+                    <div class="testimonial-card reveal-up">
                         <div class="rating">
                             <input value="5" name="rating2" id="star5-2" type="radio" checked>
                             <label for="star5-2"></label>
@@ -291,7 +345,7 @@
                             professional from start to finish."</p>
                         <h3>James Wilson</h3>
                     </div>
-                    <div class="testimonial-card">
+                    <div class="testimonial-card reveal-up">
                         <div class="rating">
                             <input value="5" name="rating3" id="star5-3" type="radio">
                             <label for="star5-3"></label>
@@ -316,12 +370,12 @@
         <section id="contact">
             <div class="container">
                 <div class="section-header">
-                    <h2 class="section-title">Get Your Free Quote Today</h2>
-                    <p class="section-subtitle">Ready to start your project? Contact us for a free estimate and
+                    <h2 class="section-title reveal-up">Get Your Free Quote Today</h2>
+                    <p class="section-subtitle reveal-up">Ready to start your project? Contact us for a free estimate and
                         consultation.</p>
                 </div>
-                <div class="contact-container">
-                    <div class="contact-info">
+                <div class="contact-container" data-stagger>
+                    <div class="contact-info reveal-left">
                         <h3>Contact Information</h3>
                         <p>Get in touch for a free quote or consultation.</p>
                         <div class="contact-details">
@@ -356,7 +410,7 @@
                         </div>
                     </div>
 
-                    <div class="contact-form">
+                    <div class="contact-form reveal-right">
                         <form id="form">
                             <div id="form-feedback" class="form-feedback" style="display: none;"></div>
                             <div class="form-group">
